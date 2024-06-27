@@ -44,40 +44,21 @@ const Hero = () => {
   };
 
   return (
-    <section className="slider-container">
-      <Slider {...settings}>
+    <section >
+      <Slider {...settings} className="w-full">
         {slides.map((slide, index) => (
-          <div
-            key={index}
-            style={{ backgroundColor: "red", display: "flex" }}
-            // className="grid lg:grid-cols-2 w-full bg-white pt-0.5 active:cursor-grab"
-            className="w-full pt-0.5 active:cursor-grab"
-          >
-            <div className="block flex-1 flex-col justify-center items-center text-[#212121] px-4 py-8 lg:px-8">
-              <div className="lg:max-w-[500px] flex flex-col gap-8">
-                <span className="space-y-4 select-none">
-                  <h1 className="text-[32px] font-semibold leading-[38.4px]">
-                    {slide.title}
-                  </h1>
-                  <h2 className="text-[#4E4E4E] text-[24px]">
-                    {slide.description}
-                  </h2>
-                </span>
-                <Link
-                  href=""
-                  className="text-white text-base bg-[#303030] font-semibold border border-[#212121] px-[32px] py-[15px] rounded-full active:scale-95 duration-150 w-max"
-                >
-                  SINC With Us
-                </Link>
+          <div key={index} className="grid grid-cols-1 lg:grid-cols-2 items-center w-full bg-white pt-5 active:cursor-grab">
+            <div className="w-full px-4 py-8 lg:py-0">
+              <div className="max-w-lg mx-auto lg:max-w-[500px]">
+                <h1 className="text-3xl lg:text-5xl font-semibold text-[#212121] leading-[1.2] mb-4">{slide.title}</h1>
+                <p className="text-[#4E4E4E] text-lg lg:text-2xl">{slide.description}</p>
+                <Link href="" className="inline-block mt-4 text-white bg-[#303030] font-semibold border border-[#212121] px-6 py-3 rounded-full hover:scale-95 transition duration-150">SINC With Us</Link>
               </div>
             </div>
-
-            <div className="lg:inline-block flex-1 hidden justify-center items-center">
-              <Image
-                src={slide.image}
-                className="w-full"
-                alt={`Banner ${index + 1}`}
-              />
+            <div className="w-full">
+              <div className="relative w-full h-64 lg:h-auto">
+                <Image src={slide.image} alt={`Banner ${index + 1}`} layout="fill" objectFit="contain" />
+              </div>
             </div>
           </div>
         ))}
