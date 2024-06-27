@@ -44,21 +44,19 @@ const Hero = () => {
   };
 
   return (
-    <section >
+    <section className="w-full">
       <Slider {...settings} className="w-full">
         {slides.map((slide, index) => (
-          <div key={index} className="grid grid-cols-1 lg:grid-cols-2 items-center w-full bg-white pt-5 active:cursor-grab">
-            <div className="w-full px-4 py-8 lg:py-0">
+          <div key={index} className="flex flex-col lg:flex-row items-center w-full bg-white pt-0.5 active:cursor-grab">
+            <div className="w-full lg:w-1/2 px-4 py-8">
               <div className="max-w-lg mx-auto lg:max-w-[500px]">
                 <h1 className="text-3xl lg:text-5xl font-semibold text-[#212121] leading-[1.2] mb-4">{slide.title}</h1>
                 <p className="text-[#4E4E4E] text-lg lg:text-2xl">{slide.description}</p>
                 <Link href="" className="inline-block mt-4 text-white bg-[#303030] font-semibold border border-[#212121] px-6 py-3 rounded-full hover:scale-95 transition duration-150">SINC With Us</Link>
               </div>
             </div>
-            <div className="w-full">
-              <div className="relative w-full h-64 lg:h-auto">
-                <Image src={slide.image} alt={`Banner ${index + 1}`} layout="fill" objectFit="contain" />
-              </div>
+            <div className="w-full lg:w-1/2 h-64 lg:h-auto relative ">
+              <Image src={slide.image} alt={`Banner ${index + 1}`} layout="fill" objectFit="contain"  />
             </div>
           </div>
         ))}
