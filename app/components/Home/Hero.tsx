@@ -1,14 +1,16 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import SwiperCore from "swiper";
+
+SwiperCore.use([Autoplay, Pagination]);
 
 import Hero1 from "@/public/assets/images/hero-1.png";
 import Hero2 from "@/public/assets/images/hero-2.png";
 import Hero3 from "@/public/assets/images/hero-3.png";
+import { Autoplay, Pagination } from "swiper/modules";
 
 const slides = [
   {
@@ -32,35 +34,47 @@ const slides = [
 ];
 
 const Hero = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    autoplay: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: <></>,
-    prevArrow: <></>,
-  };
-
   return (
     <section className="w-full">
-      <Slider {...settings} className="w-full">
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        className="w-full"
+      >
         {slides.map((slide, index) => (
-          <div key={index} className="flex flex-col lg:flex-row items-center w-full bg-white pt-0.5 active:cursor-grab">
-            <div className="w-full lg:w-1/2 px-4 py-8">
-              <div className="max-w-lg mx-auto lg:max-w-[500px]">
-                <h1 className="text-3xl lg:text-5xl font-semibold text-[#212121] leading-[1.2] mb-4">{slide.title}</h1>
-                <p className="text-[#4E4E4E] text-lg lg:text-2xl">{slide.description}</p>
-                <Link href="" className="inline-block mt-4 text-white bg-[#303030] font-semibold border border-[#212121] px-6 py-3 rounded-full hover:scale-95 transition duration-150">SINC With Us</Link>
+          <SwiperSlide key={index}>
+            <div className="flex flex-col lg:flex-row items-center w-full justify-between bg-white pt-0.5 active:cursor-grab">
+              <div className="w-full  px-4 py-8">
+                <div className="max-w-lg mx-auto lg:max-w-[500px]">
+                  <h1 className="text-3xl lg:text-5xl font-semibold text-[#212121] leading-[1.2] mb-4">
+                    {slide.title}
+                  </h1>
+                  <p className="text-[#4E4E4E] text-lg lg:text-2xl">
+                    {slide.description}
+                  </p>
+                  <Link
+                    href=""
+                    className="inline-block mt-4 text-white bg-[#303030] font-semibold border border-[#212121] px-6 py-3 rounded-full hover:scale-95 transition duration-150"
+                  >
+                    SINC With Us
+                  </Link>
+                </div>
+              </div>
+              <div className="w-full  ">
+                <Image
+                  src={slide.image}
+                  alt={`Banner ${index + 1}`}
+                  objectFit="contain"
+                  width={600}
+                  height={600}
+                />
               </div>
             </div>
-            <div className="w-full lg:w-1/2 h-64 lg:h-auto relative ">
-              <Image src={slide.image} alt={`Banner ${index + 1}`} layout="fill" objectFit="contain"  />
-            </div>
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </section>
   );
 };
